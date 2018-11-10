@@ -36,6 +36,9 @@ test <- cbind(test_subjects,test_activity,test)
 message("Performing Step : Merging Datasets")
 merged_data <- rbind(train,test)
 colnames(merged_data) <- c('subject','activity',req_feat.names)
+if (!"reshape2" %in% installed.packages()) {
+        install.packages("reshape2")
+}
 library(reshape2)
 message("Performing Step: Rename activities in the dataset")
 merged_data$activity <- factor(merged_data$activity,levels = acti_labels[,1],labels = acti_labels[,2])
